@@ -155,6 +155,12 @@ function drawGameOver() {
     ctx.font = "30px monospace";
     ctx.textAlign = "center";
     ctx.fillText("GAME OVER", width / 2, height / 2);
+    ctx.font = "24px Arial"; // optional: smaller font
+    if (leftScore > 9){
+        ctx.fillText("COMPUTER WINS", width / 2, height / 2 + 50);
+    } else {
+        ctx.fillText("PLAYER WINS", width / 2, height / 2 + 50);
+    }
 }
 
 function checkPaddleCollision(ball, paddle) {
