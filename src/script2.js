@@ -21,13 +21,13 @@ class GameView {
         this.ctx.textAlign = "left";
         this.ctx.fillText(scores.leftScore.toString(), 50, 50);
         this.ctx.textAlign = "right";
-        this.ctx.fillText(scores.rightScore.toString(), this.width - 50 - 50);
+        this.ctx.fillText(scores.rightScore.toString(), this.width - 50, 50);
     }
 
     drawGameOver() {
         this.ctx.fillStyle = "white";
         this.ctx.font = "30px monospace";
-        this.ctx.textAlign = "center",
+        this.ctx.textAlign = "center";
             this.ctx.fillText("GAME OVER", this.width / 2, this.height / 2);
     }
 }
@@ -155,7 +155,7 @@ class Computer {
 
 class Game {
     constructor() {
-        this.gameView = new GameView;
+        this.gameView = new GameView();
         this.ball = new Ball();
         this.leftPaddle = new Paddle(Paddle.OFFSET, 10);
         this.rightPaddle = new Paddle(
@@ -164,7 +164,7 @@ class Game {
         this.scores = new Scores();
         this.gameOver = false;
 
-        document.addEventListener("mousmove", e => {
+        document.addEventListener("mousemove", e => {
             this.rightPaddle.y = e.y - this.gameView.offsetTop;
         });
     }
@@ -176,7 +176,7 @@ class Game {
             this.rightPaddle
         );
 
-        this.gameView.drawScores(this.score);
+        this.gameView.drawScores(this.scores);
     }
 
     checkCollision() {
@@ -213,3 +213,5 @@ class Game {
     }
 }
 
+let game = new Game();
+game.loop();
